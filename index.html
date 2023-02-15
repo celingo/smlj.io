@@ -5,45 +5,63 @@
 	<title>18+</title>
 	<style>
 		body {
-			display: flex;
-			flex-direction: column;
-			align-items: center;
-			justify-content: center;
-			height: 100vh;
-			margin: 0;
 			background-color: black;
-			color: white;
-			font-size: 5em;
-			font-family: Arial, sans-serif;
-			text-align: center;
-		}
-
-		#timer {
-			color: red;
-		}
-
-		#text {
 			color: green;
+			font-size: 80px;
+			text-align: center;
+			margin-top: 25%;
 		}
 	</style>
-	<script>
-		function countdown() {
-			var count = 3;
-			var timer = setInterval(function() {
-				if (count > 0) {
-					document.getElementById("timer").innerHTML = count;
-					count--;
-				} else {
-					clearInterval(timer);
-					document.getElementById("timer").style.display = "none";
-					document.getElementById("text").style.display = "block";
-				}
-			}, 1000);
-		}
-	</script>
 </head>
-<body onload="countdown()">
-	<div id="timer"></div>
-	<div id="text" style="display: none;">神秘链接</div>
+<body>
+	
+	
+	
+	
+	
+	<div id="countdown"></div>
+	<div id="text"></div>
+	
+	<script>
+		var count = 3;
+		var countdownEl = document.getElementById('countdown');
+		var textEl = document.getElementById('text');
+		
+		function countdown() {
+			if (count > 0) {
+				countdownEl.innerHTML = count;
+				count--;
+				setTimeout(countdown, 1000);
+			} else {
+				countdownEl.innerHTML = "";
+				textEl.innerHTML = "神秘链接";
+				countdown2();
+			}
+		}
+		
+		function countdown2() {
+			var count2 = 4;
+			var countdownEl2 = document.createElement('div');
+			countdownEl2.style.color = 'red';
+			countdownEl2.style.marginTop = '50px';
+			document.body.appendChild(countdownEl2);
+			
+			function count2down() {
+				if (count2 > 1) {
+					countdownEl2.innerHTML = count2 - 1;
+					count2--;
+					setTimeout(count2down, 1000);
+				} else if (count2 == 1) {
+					countdownEl2.innerHTML = "";
+					textEl.innerHTML = "神秘链接消失";
+					count2--;
+				}
+			}
+			
+			setTimeout(count2down, 1000);
+		}
+		
+		setTimeout(countdown, 1000);
+	</script>
 </body>
 </html>
