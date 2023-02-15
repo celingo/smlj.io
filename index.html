@@ -1,40 +1,49 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <title>18+</title>
-    <style>
-      #countdown {
-        font-size: 72px;
-        color: red;
-        text-align: center;
-        margin-top: 20%;
-      }
-      #text {
-        font-size: 48px;
-        color: green;
-        text-align: center;
-        margin-top: 20px;
-      }
-    </style>
-  </head>
-  <body>
-    <div id="countdown"></div>
-    <div id="text"></div>
-    <script>
-      var count = 3;
-      var countdownEl = document.getElementById('countdown');
-      var textEl = document.getElementById('text');
-      
-      var countdown = setInterval(function() {
-        countdownEl.innerHTML = count;
-        count--;
-        if (count < 0) {
-          clearInterval(countdown);
-          countdownEl.style.display = 'none';
-          textEl.innerHTML = '神秘链接';
-        }
-      }, 1000);
-    </script>
-  </body>
+<head>
+	<meta charset="UTF-8">
+	<title>18+</title>
+	<style>
+		body {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+			height: 100vh;
+			margin: 0;
+			background-color: black;
+			color: white;
+			font-size: 5em;
+			font-family: Arial, sans-serif;
+			text-align: center;
+		}
+
+		#timer {
+			color: red;
+		}
+
+		#text {
+			color: green;
+		}
+	</style>
+	<script>
+		function countdown() {
+			var count = 3;
+			var timer = setInterval(function() {
+				if (count > 0) {
+					document.getElementById("timer").innerHTML = count;
+					count--;
+				} else {
+					clearInterval(timer);
+					document.getElementById("timer").style.display = "none";
+					document.getElementById("text").style.display = "block";
+				}
+			}, 1000);
+		}
+	</script>
+</head>
+<body onload="countdown()">
+	<div id="timer"></div>
+	<div id="text" style="display: none;">神秘链接</div>
+</body>
 </html>
